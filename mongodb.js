@@ -10,9 +10,11 @@ MongoClient.connect(connectionURL).then((client) => {
 
     const db = client.db(databaseName)
 
-    const ops = db.collection('users').insertOne({
-        name: 'Steven11 Huynh',
-        age: 30
+    db.collection('users').findOne({name: 'Steven11 Huynh'}).then((user) =>{
+        console.log('successful')
+        console.log(user)
+    }).catch(() => {
+        console.log('Unable to access the service')
     })
 
 }).catch((err) => {
