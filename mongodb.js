@@ -10,11 +10,16 @@ MongoClient.connect(connectionURL).then((client) => {
 
     const db = client.db(databaseName)
 
-    db.collection('users').findOne({name: 'Steven11 Huynh'}).then((user) =>{
-        console.log('successful')
-        console.log(user)
-    }).catch(() => {
-        console.log('Unable to access the service')
+    // update One recrod
+    const updatePromises = db.collection('users').updateOne(
+        {name: 'Stev12312en Huynh'},
+        {$set: {name: 'Steven123 Huynh'}}
+    )
+
+    updatePromises.then((result) => {
+        console.log('update successful!', result)
+    }).catch((error) => {
+        console.log('Failed to update', error)
     })
 
 }).catch((err) => {
